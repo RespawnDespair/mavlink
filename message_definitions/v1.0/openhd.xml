@@ -1,122 +1,93 @@
 <?xml version="1.0"?>
 <mavlink>
-  <!-- uAvionix contact info:                                     -->
-  <!-- company URL: http://www.uAvionix.com                       -->
-  <!-- email contact: matt@uAvionix.com or jeff@uAvionix.com      -->
-  <!-- mavlink ID range: 10000 - 10099                            -->
+  <!-- Open.HD specific (https://www.github.com/HD-Fpv/Open.Hd)   -->
+  <!-- mavlink ID range: 12000 - 12099                            -->
   <include>common.xml</include>
   <enums>
-    <enum name="UAVIONIX_ADSB_OUT_DYNAMIC_STATE">
-      <description>State flags for ADS-B transponder dynamic report</description>
-      <entry value="1" name="UAVIONIX_ADSB_OUT_DYNAMIC_STATE_INTENT_CHANGE"/>
-      <entry value="2" name="UAVIONIX_ADSB_OUT_DYNAMIC_STATE_AUTOPILOT_ENABLED"/>
-      <entry value="4" name="UAVIONIX_ADSB_OUT_DYNAMIC_STATE_NICBARO_CROSSCHECKED"/>
-      <entry value="8" name="UAVIONIX_ADSB_OUT_DYNAMIC_STATE_ON_GROUND"/>
-      <entry value="16" name="UAVIONIX_ADSB_OUT_DYNAMIC_STATE_IDENT"/>
+    <enum name="OPENHD_WIFI_POWER">
+      <description>Power setting for the wifi cards on an Open.HD unit</description>
+      <entry value="1" name="OPENHD_WIFI_POWER_MIN"/>
+      <entry value="2" name="OPENHD_WIFI_POWER__MED"/>
+      <entry value="3" name="OPENHD_WIFI_POWER_MAX"/>
     </enum>
-    <enum name="UAVIONIX_ADSB_OUT_RF_SELECT">
-      <description>Transceiver RF control flags for ADS-B transponder dynamic reports</description>
-      <entry value="0" name="UAVIONIX_ADSB_OUT_RF_SELECT_STANDBY"/>
-      <entry value="1" name="UAVIONIX_ADSB_OUT_RF_SELECT_RX_ENABLED"/>
-      <entry value="2" name="UAVIONIX_ADSB_OUT_RF_SELECT_TX_ENABLED"/>
-    </enum>
-    <enum name="UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX">
-      <description>Status for ADS-B transponder dynamic input</description>
-      <entry value="0" name="UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_NONE_0"/>
-      <entry value="1" name="UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_NONE_1"/>
-      <entry value="2" name="UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_2D"/>
-      <entry value="3" name="UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_3D"/>
-      <entry value="4" name="UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_DGPS"/>
-      <entry value="5" name="UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_RTK"/>
-    </enum>
-    <enum name="UAVIONIX_ADSB_RF_HEALTH">
-      <description>Status flags for ADS-B transponder dynamic output</description>
-      <entry value="0" name="UAVIONIX_ADSB_RF_HEALTH_INITIALIZING"/>
-      <entry value="1" name="UAVIONIX_ADSB_RF_HEALTH_OK"/>
-      <entry value="2" name="UAVIONIX_ADSB_RF_HEALTH_FAIL_TX"/>
-      <entry value="16" name="UAVIONIX_ADSB_RF_HEALTH_FAIL_RX"/>
-    </enum>
-    <enum name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE">
-      <description>Definitions for aircraft size</description>
-      <entry value="0" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_NO_DATA"/>
-      <entry value="1" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L15M_W23M"/>
-      <entry value="2" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L25M_W28P5M"/>
-      <entry value="3" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L25_34M"/>
-      <entry value="4" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L35_33M"/>
-      <entry value="5" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L35_38M"/>
-      <entry value="6" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L45_39P5M"/>
-      <entry value="7" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L45_45M"/>
-      <entry value="8" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L55_45M"/>
-      <entry value="9" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L55_52M"/>
-      <entry value="10" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L65_59P5M"/>
-      <entry value="11" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L65_67M"/>
-      <entry value="12" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L75_W72P5M"/>
-      <entry value="13" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L75_W80M"/>
-      <entry value="14" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L85_W80M"/>
-      <entry value="15" name="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L85_W90M"/>
-    </enum>
-    <enum name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT">
-      <description>GPS lataral offset encoding</description>
-      <entry value="0" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_NO_DATA"/>
-      <entry value="1" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_LEFT_2M"/>
-      <entry value="2" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_LEFT_4M"/>
-      <entry value="3" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_LEFT_6M"/>
-      <entry value="4" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_RIGHT_0M"/>
-      <entry value="5" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_RIGHT_2M"/>
-      <entry value="6" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_RIGHT_4M"/>
-      <entry value="7" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_RIGHT_6M"/>
-    </enum>
-    <enum name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON">
-      <description>GPS longitudinal offset encoding</description>
-      <entry value="0" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON_NO_DATA"/>
-      <entry value="1" name="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON_APPLIED_BY_SENSOR"/>
-    </enum>
-    <enum name="UAVIONIX_ADSB_EMERGENCY_STATUS">
-      <description>Emergency status encoding</description>
-      <entry value="0" name="UAVIONIX_ADSB_OUT_NO_EMERGENCY"/>
-      <entry value="1" name="UAVIONIX_ADSB_OUT_GENERAL_EMERGENCY"/>
-      <entry value="2" name="UAVIONIX_ADSB_OUT_LIFEGUARD_EMERGENCY"/>
-      <entry value="3" name="UAVIONIX_ADSB_OUT_MINIMUM_FUEL_EMERGENCY"/>
-      <entry value="4" name="UAVIONIX_ADSB_OUT_NO_COMM_EMERGENCY"/>
-      <entry value="5" name="UAVIONIX_ADSB_OUT_UNLAWFUL_INTERFERANCE_EMERGENCY"/>
-      <entry value="6" name="UAVIONIX_ADSB_OUT_DOWNED_AIRCRAFT_EMERGENCY"/>
-      <entry value="7" name="UAVIONIX_ADSB_OUT_RESERVED"/>
-    </enum>
+    <enum name="OPENHD_WIFI_CHANNEL">
+      <description>Channel setting for the wifi cards on an Open.HD unit</description>
+      <entry value="1" name="OPENHD_WIFI_CHANNEL_1"/>
+      <entry value="2" name="OPENHD_WIFI_CHANNEL_2"/>
+      <entry value="3" name="OPENHD_WIFI_CHANNEL_3"/>
+    </enum>    
+    <enum name="OPENHD_WIFI_CHANNEL_BANDWIDTH">
+      <description>Channel setting for the wifi cards on an Open.HD unit</description>
+      <entry value="5" name="OPENHD_WIFI_CHANNEL_BANDWIDTH_5_MHZ"/>
+      <entry value="10" name="OPENHD_WIFI_CHANNEL_BANDWIDTH_10_MHZ"/>
+      <entry value="20" name="OPENHD_WIFI_CHANNEL_BANDWIDTH_20_MHZ"/>
+    </enum>   
+    <enum name="OPENHD_WIFI_DATARATE">
+      <description>Lower settings yield higher range and vice versa</description>
+      <entry value="1" name="OPENHD_WIFI_DATARATE_1"/>
+      <entry value="2" name="OPENHD_WIFI_DATARATE_2"/>
+      <entry value="3" name="OPENHD_WIFI_DATARATE_3"/>
+      <entry value="4" name="OPENHD_WIFI_DATARATE_4"/>
+      <entry value="5" name="OPENHD_WIFI_DATARATE_5"/>
+      <entry value="6" name="OPENHD_WIFI_DATARATE_6"/>
+    </enum>        
+    <enum name="OPENHD_BOOLEAN">
+      <description>Yes or No boolean value</description>
+      <entry value="0" name="OPENHD_BOOLEAN_FALSE"/>
+      <entry value="1" name="OPENHD_BOOLEAN_TRUE"/>
+    </enum>  
+    <enum name="OPENHD_CAMERA_TYPE">
+      <description>Yes or No boolean value</description>
+      <entry value="0" name="OPENHD_CAMERA_TYPE_PICAMERA">
+        <description>Raspberry pi camera, naturally only available on Raspberry Pi</description>
+      </entry>
+      <entry value="1" name="OPENHD_CAMERA_TYPE_V4L2">
+        <description>Video for Linux device</description>
+      </entry>
+      <entry value="2" name="OPENHD_CAMERA_TYPE_IP">
+        <description>IP camera</description>
+      </entry>
+    </enum>     
   </enums>
   <messages>
-    <message id="10001" name="UAVIONIX_ADSB_OUT_CFG">
-      <description>Static data to configure the ADS-B transponder (send within 10 sec of a POR and every 10 sec thereafter)</description>
-      <field type="uint32_t" name="ICAO">Vehicle address (24 bit)</field>
-      <field type="char[9]" name="callsign">Vehicle identifier (8 characters, null terminated, valid characters are A-Z, 0-9, " " only)</field>
-      <field type="uint8_t" name="emitterType" enum="ADSB_EMITTER_TYPE">Transmitting vehicle type. See ADSB_EMITTER_TYPE enum</field>
-      <field type="uint8_t" name="aircraftSize" enum="UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE">Aircraft length and width encoding (table 2-35 of DO-282B)</field>
-      <field type="uint8_t" name="gpsOffsetLat" enum="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT">GPS antenna lateral offset (table 2-36 of DO-282B)</field>
-      <field type="uint8_t" name="gpsOffsetLon" enum="UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON">GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 and add one] (table 2-37 DO-282B)</field>
-      <field type="uint16_t" name="stallSpeed" units="cm/s">Aircraft stall speed in cm/s</field>
-      <field type="uint8_t" name="rfSelect" enum="UAVIONIX_ADSB_OUT_RF_SELECT" display="bitmask">ADS-B transponder reciever and transmit enable flags</field>
+    <message id="12001" name="OPENHD_SET_WIFI_AIR_SETTINGS">
+      <description>The Wifi card settings for cards connected to the AIR unit</description>
+      <field type="uint8_t" name="wifiPower" enum="OPENHD_WIFI_POWER">The Wifi transmit power</field>
+      <field type="uint8_t" name="wifiChannel" enum="OPENHD_WIFI_CHANNEL">The Wifi channel to use</field>
+      <field type="uint8_t" name="wifiChannelBandwidth" enum="OPENHD_WIFI_CHANNEL_BANDWIDTH">The Wifi channel bandwidth to use</field>
+      <field type="uint8_t" name="wifiDatarate" enum="OPENHD_WIFI_DATARATE">The datarate to use</field>
+      <field type="uint8_t" name="wifiMCS" enum="OPENHD_BOOLEAN">Use MCS</field>
+      <field type="uint8_t" name="wifiSTBC" enum="OPENHD_BOOLEAN">Use Space Time Block Coding</field>
+      <field type="uint8_t" name="wifiLDPC" enum="OPENHD_BOOLEAN">Use Low Density Parity Check</field>
     </message>
-    <message id="10002" name="UAVIONIX_ADSB_OUT_DYNAMIC">
-      <description>Dynamic data used to generate ADS-B out transponder data (send at 5Hz)</description>
-      <field type="uint32_t" name="utcTime" units="s">UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX</field>
-      <field type="int32_t" name="gpsLat" units="degE7">Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX</field>
-      <field type="int32_t" name="gpsLon" units="degE7">Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX</field>
-      <field type="int32_t" name="gpsAlt" units="mm">Altitude (WGS84). UP +ve. If unknown set to INT32_MAX</field>
-      <field type="uint8_t" name="gpsFix" enum="UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX">0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK</field>
-      <field type="uint8_t" name="numSats">Number of satellites visible. If unknown set to UINT8_MAX</field>
-      <field type="int32_t" name="baroAltMSL" units="mbar">Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX</field>
-      <field type="uint32_t" name="accuracyHor" units="mm">Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX</field>
-      <field type="uint16_t" name="accuracyVert" units="cm">Vertical accuracy in cm. If unknown set to UINT16_MAX</field>
-      <field type="uint16_t" name="accuracyVel" units="mm/s">Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX</field>
-      <field type="int16_t" name="velVert" units="cm/s">GPS vertical speed in cm/s. If unknown set to INT16_MAX</field>
-      <field type="int16_t" name="velNS" units="cm/s">North-South velocity over ground in cm/s North +ve. If unknown set to INT16_MAX</field>
-      <field type="int16_t" name="VelEW" units="cm/s">East-West velocity over ground in cm/s East +ve. If unknown set to INT16_MAX</field>
-      <field type="uint8_t" name="emergencyStatus" enum="UAVIONIX_ADSB_EMERGENCY_STATUS">Emergency status</field>
-      <field type="uint16_t" name="state" enum="UAVIONIX_ADSB_OUT_DYNAMIC_STATE" display="bitmask">ADS-B transponder dynamic input state flags</field>
-      <field type="uint16_t" name="squawk">Mode A code (typically 1200 [0x04B0] for VFR)</field>
+    <message id="12002" name="OPENHD_SET_FEC_SETTINGS">
+       <description>Set the Forward Error Correction (FEC) settings for ground and air unit</description>
+       <field type="int16_t" name="videoBlocks" units="blocks">Amount of video blocks (8 is a good default value)</field>
+       <field type="int16_t" name="videoFecs" units="blocks">Amount of FEC blocks (4 is a good default value)</field>
+       <field type="int16_t" name="videoBlockLength" units="bit">The length in bits of a block (max. blocklength Ralink cards = 2278, Atheros cards = 1550, min. sensible blocklength ~ 700, 1024 is a good default)</field>
     </message>
-    <message id="10003" name="UAVIONIX_ADSB_TRANSCEIVER_HEALTH_REPORT">
-      <description>Transceiver heartbeat with health report (updated every 10s)</description>
-      <field type="uint8_t" name="rfHealth" enum="UAVIONIX_ADSB_RF_HEALTH" display="bitmask">ADS-B transponder messages</field>
+    <message id="12003" name="OPENHD_SET_CAMERA_SETTINGS">
+       <description>Create or update the settings for a camera on the AIR unit</description>
+       <field type="uint8_t" name="cameraIndex">The index of the camera you want to setup, sensibly there should not be more than 4 cameras</field>
+       <field type="uint8_t" name="cameraType" enum="OPENHD_CAMERA_TYPE">The type of this camera</field>
+       <field type="int16_t" name="cameraWidth" units="pixels">Width of the video for this camera</field>
+       <field type="int16_t" name="cameraHeight" units="pixels">Height of the video for this camera</field>
+       <field type="char[256]" name="cameraPath">The path of the camera (interpreted depending on camera type. V4L2 uses /video/video0 for example)</field>
+       <field type="char[256]" name="cameraExtraParams">Extra parameters sent to the camera initializer</field>
+       <field type="int16_t" name="cameraBitratePercentage" units="%">Depending on channel utilization by other wifi networks you may need to set this to a lower value like 60% to avoid a delayed video stream.
+            On free channels you may set this to a higher value like 75% to get a higher bitrate and thus image quality.
+       </field>
+       <field type="int16_t" name="cameraFps" units="fps">Desired frame per second (fps) from the camera</field>
+       <field type="int16_t" name="cameraKeyframeRate" units="fps">Desired key frames per second. (This is how often a "fresh-new" video frame is transmitted.
+            Lower values mean faster glitch-recovery, but also lower video quality.
+            With fps=48 and keyframerate=5, glitches will stay visible for around 100ms in worst case.
+            You can set this higher or lower according to your needs. Minimum value is 2.) 
+        </field>
+    </message>
+    <message id="12004" name="OPENHD_SET_FC">
+       <description>Set the Flight Controller connected to the air unit</description>
+       <field type="char[64]" name="fcPort">The serial port the Flight Controller is connected to (/dev/serial0 for example)</field>
+       <field type="int16_t" name="fcBaudrate">The baudrate for the serial connection (115200 for example)</field>
     </message>
   </messages>
 </mavlink>
