@@ -89,5 +89,8 @@
        <field type="char[64]" name="fcPort">The serial port the Flight Controller is connected to (/dev/serial0 for example)</field>
        <field type="int16_t" name="fcBaudrate">The baudrate for the serial connection (115200 for example)</field>
     </message>
+    <message id="12005" name="OPENHD_GET_SETTINGS">
+       <description>Triggers the sending of all current settings for Open.HD</description>
+    </message>
   </messages>
 </mavlink>
